@@ -51,18 +51,18 @@ end
 RSpec.configure do |config|
   # Include FactoryBot methods
   config.include FactoryBot::Syntax::Methods
-  
+
   # Include Capybara DSL in feature specs
   config.include Capybara::DSL, type: :feature
-  
+
   # Include Devise test helpers if you're using Devise
   # config.include Devise::Test::IntegrationHelpers, type: :request
   # config.include Devise::Test::IntegrationHelpers, type: :system
   # config.include Devise::Test::ControllerHelpers, type: :controller
-  
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_paths = [Rails.root.join('spec/fixtures')]
-  
+  config.fixture_paths = [ Rails.root.join('spec/fixtures') ]
+
   # Set up database cleaner around tests
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
@@ -87,7 +87,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  
+
   # Include Warden test helpers if you're using Devise
   # config.include Warden::Test::Helpers
   # config.before :suite do

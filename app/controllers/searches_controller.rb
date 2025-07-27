@@ -1,7 +1,6 @@
 class SearchesController < ApplicationController
   def artist
-    @artists = Managers::Music.new.search_for_artists(params[:query])
-
-    render Components::Search::Results.new(artists: @artists)
+    data = Managers::Music.new.search_for_artists(params[:query])
+    render Components::Search::Results.new(data: data)
   end
 end

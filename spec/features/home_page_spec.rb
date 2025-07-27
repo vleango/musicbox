@@ -15,11 +15,11 @@ RSpec.feature "HomePage", type: :feature do
 
       before do
         allow_any_instance_of(Managers::Music).to receive(:search_for_artists)
-          .with("Test").and_return([artist])
+          .with("Test").and_return({ next_page: nil, artists: [ artist ] })
         allow_any_instance_of(Managers::Music).to receive(:get_artist)
           .with(artist[:id].to_s).and_return(artist)
         allow_any_instance_of(Managers::Music).to receive(:get_songs)
-          .with(artist[:id]).and_return([song])
+          .with(artist[:id], page: 1).and_return({ next_page: nil, songs: [ song ] })
       end
 
       it "displays the search results and allows viewing songs" do
@@ -36,7 +36,7 @@ RSpec.feature "HomePage", type: :feature do
     context "when no results are found" do
       before do
         allow_any_instance_of(Managers::Music).to receive(:search_for_artists)
-          .with("Nonexistent").and_return([])
+          .with("Nonexistent").and_return({ next_page: nil, artists: [] })
       end
 
       it "shows a no results message" do
