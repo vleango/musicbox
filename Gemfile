@@ -52,7 +52,18 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
+  # Testing framework
   gem "rspec-rails", "~> 8.0.0"
+
+  # Feature testing
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
+
+  # Test data generation
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "database_cleaner-active_record"
 end
 
 group :development do

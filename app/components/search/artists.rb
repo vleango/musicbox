@@ -9,19 +9,21 @@ class Components::Search::Artists < Components::Base
       h1(class: "text-2xl font-bold mb-4 p-4") { "Artists" }
 
       div(class: "divide-y divide-gray-200") {
-        template("x-for": "artist in artists", ":key": "artist.id") {
-          a("x-bind:href": "`/artists/${artist.id}/songs.turbo_stream`",
-            "x-bind:class": "{
-              'block p-4 hover:bg-gray-50': true,
-              'bg-blue-50': isSelected(artist.id)
-            }",
-            "x-on:click": "selectArtist(artist.id)",
-            "data-turbo-prefetch": "false",
-            "data-turbo-stream": "true",
-            "data-turbo-frame": "songs") {
-            div(class: "font-semibold", "x-text": "artist.name")
+        @artists.each do |artist|
+          link_to(
+            songs_artist_path(artist[:id]),
+            id: "artist_#{artist[:id]}",
+            data: {
+              turbo_prefetch: "false",
+              turbo_stream: "true"
+            },
+            class: "block p-4 hover:bg-gray-50",
+            "x-bind:class": "isSelected(#{artist[:id]}) ? 'bg-blue-50' : ''",
+            "x-on:click": "selectArtist(#{artist[:id]})",
+          ) {
+            div(class: "font-semibold") { artist[:name] }
           }
-        }
+        end
       }
     }
   end

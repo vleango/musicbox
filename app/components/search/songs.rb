@@ -7,7 +7,7 @@ class Components::Search::Songs < Components::Base
   def view_template
     div(id: "songs", class: "w-2/3 p-4") do
       h1(class: "text-2xl font-bold mb-6") { "#{@artist[:name]} - Songs" }
-      
+
       if @songs.any?
         div(class: "space-y-3") do
           @songs.each do |song|
